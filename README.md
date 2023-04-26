@@ -1,10 +1,10 @@
-# master-laravel-bootstrap-jetstream
+# materialize-laravel-bootstrap-jetstream
 
-[![Latest Stable Version](https://poser.pugx.org/themeselection/master-laravel-bootstrap-jetstream/v)](//packagist.org/packages/themeselection/master-laravel-bootstrap-jetstream)
-[![License](https://poser.pugx.org/themeselection/master-laravel-bootstrap-jetstream/license)](//packagist.org/packages/themeselection/master-laravel-bootstrap-jetstream)
+[![Latest Stable Version](https://poser.pugx.org/pixinvent/materialize-laravel-bootstrap-jetstream/v)](//packagist.org/packages/pixinvent/materialize-laravel-bootstrap-jetstream)
+[![License](https://poser.pugx.org/pixinvent/materialize-laravel-bootstrap-jetstream/license)](//packagist.org/packages/pixinvent/materialize-laravel-bootstrap-jetstream)
 
-##### Specially customized Laravel jetstream's scaffolding for [Master admin Template](#). It'll not work with any other project.
-[Download from packagist](https://packagist.org/packages/themeselection/master-laravel-bootstrap-jetstream)
+##### Specially customized Laravel jetstream's scaffolding for [Materialize admin Template](#). It'll not work with any other project.
+[Download from packagist](https://packagist.org/packages/pixinvent/materialize-laravel-bootstrap-jetstream)
 
 ## Description
 
@@ -14,21 +14,19 @@ Master Laravel Jetsream is a lightweight laravel package that focuses on the `VI
 
 ## Table of Content
 
-* [Installation](#installation)
-
-* [Installing Jetstream](#installing-jetstream)
-
-* [Install Jetstream With Livewire](#install-jetstream-with-livewire)
-
-* [Install Master Laravel Bootstrap Jetsream](#install-master-laravel-bootstrap-jetstream)
-
-* [Finalizing The Installation](#finalizing-the-installation)
-
-* [Extras](#extras)
-
-* [Pagination](#pagination)
-  
-* [License](#license)
+- [materialize-laravel-bootstrap-jetstream](#materialize-laravel-bootstrap-jetstream)
+        - [Specially customized Laravel jetstream's scaffolding for Master admin Template. It'll not work with any other project.](#specially-customized-laravel-jetstreams-scaffolding-for-master-admin-template-itll-not-work-with-any-other-project)
+  - [Description](#description)
+  - [Table of Content](#table-of-content)
+  - [Installation](#installation)
+    - [Installing Jetstream](#installing-jetstream)
+      - [Install Jetstream With Livewire](#install-jetstream-with-livewire)
+    - [Install Master Laravel Bootstrap Jetstream](#install-master-laravel-bootstrap-jetstream)
+    - [Finalizing The Installation](#finalizing-the-installation)
+    - [Extras](#extras)
+      - [Pagination](#pagination)
+  - [Credits](#credits)
+  - [License](#license)
 
 ## Installation
 
@@ -64,7 +62,7 @@ Use Composer to install Master Jetstream into your new Laravel project as dev de
 
 ```
 
-composer require themeselection/master-laravel-bootstrap-jetstream --dev
+composer require pixinvent/materialize-laravel-bootstrap-jetstream --dev
  
 
 ```
@@ -168,4 +166,4 @@ This packages is built on top of [Jetstream](https://github.com/laravel/jetstrea
 
 ## License
 
-Master Jetsream is open-sourced software licensed under the [MIT license](https://github.com/themeselection/master-laravel-bootstrap-jetstream/blob/master/LICENSE).
+Master Jetsream is open-sourced software licensed under the [MIT license](https://github.com/pixinvent/materialize-laravel-bootstrap-jetstream/blob/master/LICENSE).

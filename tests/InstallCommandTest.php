@@ -1,8 +1,8 @@
 <?php
 
-namespace Themeselection\Jetstrap\Tests;
+namespace Pixinvent\Jetstrap\Tests;
 
-use Themeselection\Jetstrap\JetstrapFacade;
+use Pixinvent\Jetstrap\JetstrapFacade;
 
 class InstallCommandTest extends TestCase
 {
