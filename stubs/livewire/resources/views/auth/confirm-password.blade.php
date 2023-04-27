@@ -1,3 +1,8 @@
+@php
+$configData = Helper::appClasses();
+$customizerHidden = 'customizer-hide';
+@endphp
+
 @extends('layouts/blankLayout')
 
 @section('title', 'Confirm Password')
@@ -9,65 +14,54 @@
 
 @section('content')
 <div class="authentication-wrapper authentication-cover">
+  <!-- Logo -->
+  <a href="{{url('/')}}" class="auth-cover-brand d-flex align-items-center gap-2">
+    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'#666cff'])</span>
+    <span class="app-brand-text demo text-heading fw-bold">{{config('variables.templateName')}}</span>
+  </a>
+  <!-- /Logo -->
   <div class="authentication-inner row m-0">
-    <!-- /Left Text -->
-    <div class="d-none d-lg-flex col-lg-7 col-xl-8 align-items-center p-5">
-      <div class="w-100 px-5">
-        <h1 class="display-2 fw-bolder mb-4">JOIN OUR<br>COMMUNITY</h1>
-        <div class="text-large fw-light">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vehicula ex eu gravida faucibus.
-          Suspendisse viverra pharetra purus. Proin fringilla ac lorem at sagittis. Proin tincidunt dui et nunc
-          ultricies dignissim.
-        </div>
-      </div>
+
+    <!-- /Left Section -->
+    <div class="d-none d-lg-flex col-lg-7 col-xl-8 align-items-center justify-content-center p-5 pb-2">
+      <img src="{{asset('assets/img/illustrations/auth-forgot-password-illustration-'.$configData['style'].'.png') }}" class="auth-cover-illustration w-100" alt="auth-illustration" data-app-light-img="illustrations/auth-forgot-password-illustration-light.png" data-app-dark-img="illustrations/auth-forgot-password-illustration-dark.png" />
+      <img src="{{asset('assets/img/illustrations/auth-cover-forgot-password-mask-'.$configData['style'].'.png') }}" class="authentication-image" alt="mask" data-app-light-img="illustrations/auth-cover-forgot-password-mask-light.png" data-app-dark-img="illustrations/auth-cover-forgot-password-mask-dark.png" />
     </div>
-    <!-- /Left Text -->
-    <!--  password confirm -->
+    <!-- /Left Section -->
+
+    <!-- Confirm Password -->
     <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-5 p-4">
       <div class="w-px-400 mx-auto">
-        <!-- Logo -->
-        <div class="app-brand justify-content-center mb-5">
-          <a href="{{url('/')}}" class="app-brand-link gap-2">
-            <span class="app-brand-logo demo bg-primary">@include('_partials.macros',["height"=>20,"withbg"=>'fill: #fff;'])</span>
-            <span class="app-brand-text demo text-body fw-bold">{{config('variables.templateName')}}</span>
-          </a>
-        </div>
-        <!-- /Logo -->
-        <h4 class="mb-3">Confirm Password</h4>
-        <p class="text-start mb-4">Please confirm your password before continuing.</p>
-        <p class="mb-0 fw-semibold">Type your 6 digit security code</p>
-        <form id="twoStepsForm" action="{{ route('password.confirm') }}" method="POST">
+        <h4 class="mb-2 fw-semibold">Confirm Password? 🔒</h4>
+        <p class="mb-4">Please confirm your password before continuing.</p>
+        <form id="twoStepsForm" class="mb-3" action="{{ route('password.confirm') }}" method="POST">
           @csrf
-          <div class="mb-3 form-password-toggle">
-            <label class="form-label" for="password">New Password</label>
+          <div class="form-password-toggle">
             <div class="input-group input-group-merge @error('password') is-invalid @enderror">
-              <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
-              <span class="input-group-text cursor-pointer">
-                <i class="bx bx-hide"></i>
+              <div class="form-floating form-floating-outline">
+                <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                <label for="password">Password</label>
+              </div>
+              <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
+              @error('password')
+              <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
               </span>
+              @enderror
             </div>
-            @error('password')
-            <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-            </span>
-            @enderror
           </div>
-
-          <button type="submit" class="btn btn-primary d-grid w-100 mb-3">
-            Confirm Password
-          </button>
+          <button class="btn btn-primary d-grid w-100">Confirm Password</button>
         </form>
-
-        <p class="text-center mt-2">
+        <div class="text-center">
           @if (Route::has('password.request'))
-          <a class="btn btn-link" href="{{ route('password.request') }}">
+          <a href="{{ route('password.request') }}">
             {{ __('Forgot Your Password?') }}
           </a>
           @endif
-        </p>
+        </div>
       </div>
     </div>
-    <!-- / password confirm -->
+    <!-- /Confirm Password -->
   </div>
 </div>
 @endsection

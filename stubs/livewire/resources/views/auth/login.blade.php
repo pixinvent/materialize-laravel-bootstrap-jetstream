@@ -46,18 +46,18 @@ $customizerHidden = 'customizer-hide';
           @csrf
           <div class="form-floating form-floating-outline mb-3">
             <input type="text" class="form-control @error('email') is-invalid @enderror" id="login-email" name="email" placeholder="john@example.com" autofocus value="{{ old('email') }}">
+            <label for="login-email">Email or Username</label>
             @error('email')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
             </span>
             @enderror
-            <label for="login-email">Email or Username</label>
           </div>
           <div class="mb-3">
             <div class="form-password-toggle">
               <div class="input-group input-group-merge">
                 <div class="form-floating form-floating-outline">
-                  <input type="password" id="login-password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                  <input type="password" id="login-password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
                   <label for="login-password">Password</label>
                 </div>
                 <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>

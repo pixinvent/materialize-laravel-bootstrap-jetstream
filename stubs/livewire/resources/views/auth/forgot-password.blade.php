@@ -3,28 +3,13 @@ $configData = Helper::appClasses();
 $customizerHidden = 'customizer-hide';
 @endphp
 
-@extends('layouts/layoutMaster')
+@extends('layouts/blankLayout')
 
-@section('title', 'Forgot Password Cover - Pages')
-
-@section('vendor-style')
-<!-- Vendor -->
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
-@endsection
+@section('title', 'Forgot Password')
 
 @section('page-style')
-<!-- Page -->
-<link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-auth.css')}}">
-@endsection
-
-@section('vendor-script')
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
-@endsection
-
-@section('page-script')
-<script src="{{asset('assets/js/pages-auth.js')}}"></script>
+{{-- Page Css files --}}
+<link rel="stylesheet" href="{{asset(mix('assets/vendor/css/pages/page-auth.css'))}}">
 @endsection
 
 @section('content')
@@ -43,7 +28,6 @@ $customizerHidden = 'customizer-hide';
       <img src="{{asset('assets/img/illustrations/auth-cover-forgot-password-mask-'.$configData['style'].'.png') }}" class="authentication-image" alt="mask" data-app-light-img="illustrations/auth-cover-forgot-password-mask-light.png" data-app-dark-img="illustrations/auth-cover-forgot-password-mask-dark.png" />
     </div>
     <!-- /Left Section -->
-
     <!-- Forgot Password -->
     <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-5 p-4">
       <div class="w-px-400 mx-auto">
@@ -57,8 +41,9 @@ $customizerHidden = 'customizer-hide';
         @endif
         
         <form id="formAuthentication" class="mb-3" action="{{ route('password.email') }}" method="POST">
+          @csrf
           <div class="form-floating form-floating-outline mb-3">
-            <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" autofocus>
+            <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="john@example.com" autofocus>
             @error('email')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -70,7 +55,7 @@ $customizerHidden = 'customizer-hide';
         </form>
         <div class="text-center">
           @if (Route::has('login'))
-          <a href="{{url('auth/login-cover')}}" class="d-flex align-items-center justify-content-center">
+          <a href="{{ route('login') }}" class="d-flex align-items-center justify-content-center">
             <i class="mdi mdi-chevron-left scaleX-n1-rtl mdi-24px"></i>
             Back to login
           </a>
