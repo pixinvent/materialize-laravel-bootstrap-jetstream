@@ -46,7 +46,7 @@ $customizerHidden = 'customizer-hide';
           @csrf
           <div class="form-floating form-floating-outline mb-3">
             <input type="text" class="form-control @error('email') is-invalid @enderror" id="login-email" name="email" placeholder="john@example.com" autofocus value="{{ old('email') }}">
-            <label for="login-email">Email or Username</label>
+            <label for="login-email">Email</label>
             @error('email')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>

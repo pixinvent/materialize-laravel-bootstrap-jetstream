@@ -38,7 +38,7 @@ $customizerHidden = 'customizer-hide';
         <form id="formAuthentication" class="mb-3" action="{{ route('register') }}" method="POST">
           @csrf
           <div class="form-floating form-floating-outline mb-3">
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="username" name="username" placeholder="johndoe" autofocus>
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="username" name="name" placeholder="johndoe" autofocus value="{{ old('name') }}">
             <label for="username">Username</label>
             @error('name')
             <span class="invalid-feedback" role="alert">
