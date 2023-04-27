@@ -39,21 +39,21 @@ $customizerHidden = 'customizer-hide';
           @csrf
           <div class="form-floating form-floating-outline mb-3">
             <input type="text" class="form-control @error('name') is-invalid @enderror" id="username" name="username" placeholder="johndoe" autofocus>
+            <label for="username">Username</label>
             @error('name')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
             </span>
             @enderror
-            <label for="username">Username</label>
           </div>
           <div class="form-floating form-floating-outline mb-3">
             <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="john@example.com" value="{{ old('email') }}">
+            <label for="email">Email</label>
             @error('email')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
             </span>
             @enderror
-            <label for="email">Email</label>
           </div>
           <div class="mb-3 form-password-toggle">
             <div class="input-group input-group-merge @error('password') is-invalid @enderror">

@@ -45,11 +45,11 @@ $customizerHidden = 'customizer-hide';
           <div class="form-floating form-floating-outline mb-3">
             <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="john@example.com" autofocus>
             @error('email')
+            <label for="email">Email</label>
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
             </span>
             @enderror
-            <label for="email">Email</label>
           </div>
           <button type="submit" class="btn btn-primary d-grid w-100">Send Reset Link</button>
         </form>
