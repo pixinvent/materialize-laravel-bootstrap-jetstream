@@ -3,28 +3,13 @@ $configData = Helper::appClasses();
 $customizerHidden = 'customizer-hide';
 @endphp
 
-@extends('layouts/layoutMaster')
+@extends('layouts/blankLayout')
 
-@section('title', 'Login Cover - Pages')
-
-@section('vendor-style')
-<!-- Vendor -->
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
-@endsection
+@section('title', 'Login')
 
 @section('page-style')
-<!-- Page -->
-<link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-auth.css')}}">
-@endsection
-
-@section('vendor-script')
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
-@endsection
-
-@section('page-script')
-<script src="{{asset('assets/js/pages-auth.js')}}"></script>
+{{-- Page Css files --}}
+<link rel="stylesheet" href="{{asset(mix('assets/vendor/css/pages/page-auth.css'))}}">
 @endsection
 
 @section('content')
@@ -60,23 +45,27 @@ $customizerHidden = 'customizer-hide';
         <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
           @csrf
           <div class="form-floating form-floating-outline mb-3">
-            <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email-username" placeholder="Enter your email or username" autofocus value="{{ old('email') }}">
+            <input type="text" class="form-control @error('email') is-invalid @enderror" id="login-email" name="email" placeholder="john@example.com" autofocus value="{{ old('email') }}">
             @error('email')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
             </span>
             @enderror
-            <label for="email">Email or Username</label>
+            <label for="login-email">Email or Username</label>
           </div>
           <div class="mb-3">
             <div class="form-password-toggle">
               <div class="input-group input-group-merge">
                 <div class="form-floating form-floating-outline">
-                  <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
-                  
-                  <label for="password">Password</label>
+                  <input type="password" id="login-password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                  <label for="login-password">Password</label>
                 </div>
                 <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
+                @error('password')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
               </div>
             </div>
           </div>
@@ -101,7 +90,7 @@ $customizerHidden = 'customizer-hide';
         <p class="text-center mt-2">
           <span>New on our platform?</span>
           @if (Route::has('register'))
-          <a href="{{url('auth/register-cover')}}">
+          <a href="{{ route('register') }}">
             <span>Create an account</span>
           </a>
           @endif
