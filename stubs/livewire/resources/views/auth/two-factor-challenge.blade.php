@@ -60,11 +60,11 @@ $customizerHidden = 'customizer-hide';
               <x-input-error for="recovery_code"></x-input-error>
             </div>
 
-            <div class="d-flex justify-content-end my-2 gap-2">
-              <button type="button" class="btn btn-outline-secondary me-1" x-show="! recovery" x-on:click="recovery = true; $nextTick(() => { $refs.recovery_code.focus()})">Use a recovery code
+            <div class="btn-group mb-3" role="group">
+              <button type="button" class="btn btn-outline-secondary" x-show="! recovery" x-on:click="recovery = true; $nextTick(() => { $refs.recovery_code.focus()})">Use a recovery code
               </button>
 
-              <button type="button" class="btn btn-outline-secondary me-1" x-show="recovery" x-on:click=" recovery = false; $nextTick(() => { $refs.code.focus() })">
+              <button type="button" class="btn btn-outline-secondary" x-show="recovery" x-on:click=" recovery = false; $nextTick(() => { $refs.code.focus() })">
                 Use an authentication code
               </button>
             </div>
