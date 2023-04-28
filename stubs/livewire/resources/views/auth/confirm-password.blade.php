@@ -52,7 +52,6 @@ $customizerHidden = 'customizer-hide';
           </div>
           <button class="btn btn-primary d-grid w-100">Confirm Password</button>
         </form>
-        @if (!Auth::check())
         <div class="text-center">
           @if (Route::has('password.request'))
           <a href="{{ route('password.request') }}">
@@ -60,7 +59,6 @@ $customizerHidden = 'customizer-hide';
           </a>
           @endif
         </div>
-        @endif
       </div>
     </div>
     <!-- /Confirm Password -->
