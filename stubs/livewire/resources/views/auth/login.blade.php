@@ -35,7 +35,7 @@ $customizerHidden = 'customizer-hide';
         <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
         @if (session('status'))
-        <div class="alert alert-success mb-1 rounded-0" role="alert">
+        <div class="alert alert-success mb-3 rounded" role="alert">
           <div class="alert-body">
             {{ session('status') }}
           </div>
