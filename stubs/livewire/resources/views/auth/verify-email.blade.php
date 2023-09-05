@@ -13,21 +13,17 @@ $customizerHidden = 'customizer-hide';
 @endsection
 
 @section('content')
-<div class="authentication-wrapper authentication-cover">
-  <!-- Logo -->
-  <a href="{{url('/')}}" class="auth-cover-brand d-flex align-items-center gap-2">
-    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'#666cff'])</span>
-    <span class="app-brand-text demo text-heading fw-bold">{{config('variables.templateName')}}</span>
-  </a>
-  <!-- /Logo -->
-  <div class="authentication-inner row m-0">
+<div class="authentication-wrapper authentication-basic px-4">
+  <div class="authentication-inner py-4">
 
-    <!-- /Left Section -->
-    <div class="d-none d-lg-flex col-lg-7 col-xl-8 align-items-center justify-content-center p-5 pb-2">
-      <img src="{{asset('assets/img/illustrations/auth-verify-email-illustration-'.$configData['style'].'.png') }}" class="auth-cover-illustration w-100" alt="auth-illustration" data-app-light-img="illustrations/auth-verify-email-illustration-light.png" data-app-dark-img="illustrations/auth-verify-email-illustration-dark.png" />
-      <img src="{{asset('assets/img/illustrations/auth-cover-login-mask-'.$configData['style'].'.png') }}" class="authentication-image" alt="mask" data-app-light-img="illustrations/auth-cover-login-mask-light.png" data-app-dark-img="illustrations/auth-cover-login-mask-dark.png" />
+    <!-- Logo -->
+    <div class="app-brand justify-content-center mb-5">
+      <a href="{{url('/')}}" class="app-brand-link gap-2">
+        <span class="app-brand-logo demo bg-primary">@include('_partials.macros',["height"=>20,"withbg"=>'fill: #fff;'])</span>
+        <span class="app-brand-text demo text-body fw-bold">{{config('variables.templateName')}}</span>
+      </a>
     </div>
-    <!-- /Left Section -->
+    <!-- /Logo -->
 
     <!--  Verify email -->
     <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg position-relative py-sm-5 px-4 py-4">
@@ -42,7 +38,7 @@ $customizerHidden = 'customizer-hide';
         </div>
         @endif
         <p class="text-start">
-          Account activation link sent to your email address: <strong>{{Auth::user()->email}}</strong> Please follow the link inside to continue.
+          Account activation link sent to your email address: <span class="fw-medium">{{Auth::user()->email}}</span> Please follow the link inside to continue.
         </p>
         <div class="mt-4 d-flex flex-column justify-content-between gap-2">
           <form method="POST" action="{{ route('verification.send') }}">
@@ -52,8 +48,8 @@ $customizerHidden = 'customizer-hide';
             </button>
           </form>
 
-          <form method="POST" action="{{route('logout')}}">
-            @csrf
+            <form method="POST" action="{{route('logout')}}">
+              @csrf
 
             <button type="submit" class="w-100 btn btn-danger">
               Log Out

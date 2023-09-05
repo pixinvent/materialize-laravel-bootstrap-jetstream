@@ -49,27 +49,30 @@ $customizerHidden = 'customizer-hide';
             <label for="login-email">Email</label>
             @error('email')
             <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
+              <span class="fw-medium">{{ $message }}</span>
+            </span>
+            @enderror
+          </div>
+          <div class="mb-3 form-password-toggle">
+            <div class="d-flex justify-content-between">
+              <label class="form-label" for="login-password">Password</label>
+              @if (Route::has('password.request'))
+              <a href="{{ route('password.request') }}">
+                <small>Forgot Password?</small>
+              </a>
+              @endif
+            </div>
+            <div class="input-group input-group-merge @error('password') is-invalid @enderror">
+              <input type="password" id="login-password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+              <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+            </div>
+            @error('password')
+            <span class="invalid-feedback" role="alert">
+              <span class="fw-medium">{{ $message }}</span>
             </span>
             @enderror
           </div>
           <div class="mb-3">
-            <div class="form-password-toggle">
-              <div class="input-group input-group-merge">
-                <div class="form-floating form-floating-outline">
-                  <input type="password" id="login-password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
-                  <label for="login-password">Password</label>
-                </div>
-                <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
-                @error('password')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-              </div>
-            </div>
-          </div>
-          <div class="mb-3 d-flex justify-content-between">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="remember-me" name="remember" {{ old('remember') ? 'checked' : '' }}>
               <label class="form-check-label" for="remember-me">
