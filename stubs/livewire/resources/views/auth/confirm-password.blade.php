@@ -16,7 +16,7 @@ $customizerHidden = 'customizer-hide';
 <div class="authentication-wrapper authentication-cover">
   <!-- Logo -->
   <a href="{{url('/')}}" class="auth-cover-brand d-flex align-items-center gap-2">
-    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'#666cff'])</span>
+    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'var(--bs-primary)'])</span>
     <span class="app-brand-text demo text-heading fw-bold">{{config('variables.templateName')}}</span>
   </a>
   <!-- /Logo -->
@@ -30,9 +30,9 @@ $customizerHidden = 'customizer-hide';
     <!-- /Left Section -->
 
     <!-- Confirm Password -->
-    <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-5 p-4">
-      <div class="w-px-400 mx-auto">
-        <h4 class="mb-2 fw-semibold">Confirm Password? 🔒</h4>
+    <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg position-relative py-sm-5 px-4 py-4">
+      <div class="w-px-400 mx-auto pt-5 pt-lg-0">
+        <h4 class="mb-2">Confirm Password? 🔒</h4>
         <p class="mb-4">Please confirm your password before continuing.</p>
         <form id="twoStepsForm" class="mb-3" action="{{ route('password.confirm') }}" method="POST">
           @csrf
@@ -45,7 +45,7 @@ $customizerHidden = 'customizer-hide';
               <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
               @error('password')
               <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
+                <span class="fw-medium">{{ $message }}</span>
               </span>
               @enderror
             </div>

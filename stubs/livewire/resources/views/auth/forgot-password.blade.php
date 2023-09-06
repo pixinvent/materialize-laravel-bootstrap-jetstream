@@ -16,7 +16,7 @@ $customizerHidden = 'customizer-hide';
 <div class="authentication-wrapper authentication-cover">
   <!-- Logo -->
   <a href="{{url('/')}}" class="auth-cover-brand d-flex align-items-center gap-2">
-    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'#666cff'])</span>
+    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'var(--bs-primary)'])</span>
     <span class="app-brand-text demo text-heading fw-bold">{{config('variables.templateName')}}</span>
   </a>
   <!-- /Logo -->
@@ -28,6 +28,7 @@ $customizerHidden = 'customizer-hide';
       <img src="{{asset('assets/img/illustrations/auth-cover-forgot-password-mask-'.$configData['style'].'.png') }}" class="authentication-image" alt="mask" data-app-light-img="illustrations/auth-cover-forgot-password-mask-light.png" data-app-dark-img="illustrations/auth-cover-forgot-password-mask-dark.png" />
     </div>
     <!-- /Left Section -->
+
     <!-- Forgot Password -->
     <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-5 p-4">
       <div class="w-px-400 mx-auto">
@@ -39,13 +40,13 @@ $customizerHidden = 'customizer-hide';
           {{ session('status') }}
         </div>
         @endif
-        
+
         <form id="formAuthentication" class="mb-3" action="{{ route('password.email') }}" method="POST">
           @csrf
           <div class="form-floating form-floating-outline mb-3">
             <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="john@example.com" autofocus>
-            @error('email')
             <label for="email">Email</label>
+            @error('email')
             <span class="invalid-feedback" role="alert">
               <span class="fw-medium">{{ $message }}</span>
             </span>

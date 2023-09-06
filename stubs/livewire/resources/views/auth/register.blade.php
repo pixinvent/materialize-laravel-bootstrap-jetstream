@@ -16,7 +16,7 @@ $customizerHidden = 'customizer-hide';
 <div class="authentication-wrapper authentication-cover">
   <!-- Logo -->
   <a href="{{url('/')}}" class="auth-cover-brand d-flex align-items-center gap-2">
-    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'#666cff'])</span>
+    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'var(--bs-primary)'])</span>
     <span class="app-brand-text demo text-heading fw-bold">{{config('variables.templateName')}}</span>
   </a>
   <!-- /Logo -->
@@ -32,7 +32,7 @@ $customizerHidden = 'customizer-hide';
     <!-- Register -->
     <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg position-relative py-sm-5 px-4 py-4">
       <div class="w-px-400 mx-auto pt-5 pt-lg-0">
-        <h4 class="mb-2 fw-semibold">Adventure starts here 🚀</h4>
+        <h4 class="mb-2">Adventure starts here 🚀</h4>
         <p class="mb-4">Make your app management easy and fun!</p>
 
         <form id="formAuthentication" class="mb-3" action="{{ route('register') }}" method="POST">
@@ -62,12 +62,12 @@ $customizerHidden = 'customizer-hide';
                 <label for="password">Password</label>
               </div>
               <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
-              @error('password')
-              <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-              </span>
-              @enderror
             </div>
+            @error('password')
+            <span class="invalid-feedback" role="alert">
+              <span class="fw-medium">{{ $message }}</span>
+            </span>
+            @enderror
           </div>
 
           <div class="mb-3 form-password-toggle">
@@ -80,25 +80,21 @@ $customizerHidden = 'customizer-hide';
             </div>
           </div>
           @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-            <div class="mb-3">
-              <div class="form-check @error('terms') is-invalid @enderror">
+          <div class="mb-3">
+            <div class="form-check @error('terms') is-invalid @enderror">
                 <input class="form-check-input @error('terms') is-invalid @enderror" type="checkbox" id="terms" name="terms" />
-                <label class="form-check-label" for="terms">
+              <label class="form-check-label" for="terms">
                 I agree to the
-                    <a href="{{ route('terms.show') }}" target="_blank">
-                  terms_of_service
-                </a> and
-                    <a href="{{ route('policy.show') }}" target="_blank">
-                  privacy_policy
-                    </a>
-                </label>
-              </div>
-              @error('terms')
-                <div class="invalid-feedback" role="alert">
-                    <span class="fw-medium">{{ $message }}</span>
-                </div>
-              @enderror
+                <a href="{{ route('policy.show') }}" target="_blank">privacy policy</a> &
+                <a href="{{ route('terms.show') }}" target="_blank">terms</a>
+              </label>
             </div>
+            @error('terms')
+            <div class="invalid-feedback" role="alert">
+              <span class="fw-medium">{{ $message }}</span>
+            </div>
+            @enderror
+          </div>
           @endif
           <button type="submit" class="btn btn-primary d-grid w-100">Sign up</button>
         </form>

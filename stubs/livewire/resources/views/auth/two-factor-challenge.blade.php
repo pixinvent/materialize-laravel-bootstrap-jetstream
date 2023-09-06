@@ -5,7 +5,7 @@ $customizerHidden = 'customizer-hide';
 
 @extends('layouts/blankLayout')
 
-@section('title', '2 Factor Challenge')
+@section('title', 'Two Steps Verifications')
 
 @section('page-style')
 {{-- Page Css files --}}
@@ -16,7 +16,7 @@ $customizerHidden = 'customizer-hide';
 <div class="authentication-wrapper authentication-cover">
   <!-- Logo -->
   <a href="{{url('/')}}" class="auth-cover-brand d-flex align-items-center gap-2">
-    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'#666cff'])</span>
+    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'var(--bs-primary)'])</span>
     <span class="app-brand-text demo text-heading fw-bold">{{config('variables.templateName')}}</span>
   </a>
   <!-- /Logo -->
@@ -33,7 +33,7 @@ $customizerHidden = 'customizer-hide';
     <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg position-relative py-sm-5 px-4 py-4">
       <div class="w-px-400 mx-auto pt-5 pt-lg-0">
 
-        <h4 class="mb-2 fw-semibold">Two Step Verification 💬</h4>
+        <h4 class="mb-2">Two Step Verification 💬</h4>
         <div x-data="{ recovery: false }">
           <div class="mb-3" x-show="! recovery">
             Please confirm access to your account by entering the authentication code provided by your authenticator application.
@@ -47,7 +47,6 @@ $customizerHidden = 'customizer-hide';
 
           <form method="POST" action="{{ route('two-factor.login') }}">
             @csrf
-
             <div class="mb-3" x-show="! recovery">
               <x-label class="form-label" value="{{ __('Code') }}" />
               <x-input class="{{ $errors->has('code') ? 'is-invalid' : '' }}" type="text" inputmode="numeric" name="code" autofocus x-ref="code" autocomplete="one-time-code" />
@@ -60,19 +59,9 @@ $customizerHidden = 'customizer-hide';
               <x-input-error for="recovery_code"></x-input-error>
             </div>
 
-            <div class="btn-group mb-3" role="group">
-              <button type="button" class="btn btn-outline-secondary" x-show="! recovery" x-on:click="recovery = true; $nextTick(() => { $refs.recovery_code.focus()})">Use a recovery code
-              </button>
-
-              <button type="button" class="btn btn-outline-secondary" x-show="recovery" x-on:click=" recovery = false; $nextTick(() => { $refs.code.focus() })">
-                Use an authentication code
-              </button>
-            </div>
-            <div class="d-flex">
-              <x-button class="w-100">
-                Log in
-              </x-button>
-            </div>
+            <button type="button" class="btn btn-outline-secondary mb-2 w-100" x-show="! recovery" x-on:click="recovery = true; $nextTick(() => { $refs.recovery_code.focus()})">Use a recovery code</button>
+            <button type="button" class="btn btn-outline-secondary mb-2 w-100" x-show="recovery" x-on:click=" recovery = false; $nextTick(() => { $refs.code.focus() })">Use an authentication code</button>
+            <x-button class="w-100">Log in</x-button>
           </form>
         </div>
       </div>
