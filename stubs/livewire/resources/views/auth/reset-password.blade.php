@@ -58,6 +58,11 @@ $customizerHidden = 'customizer-hide';
                 </div>
                 <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
               </div>
+              @error('password')
+                <span class="invalid-feedback" role="alert">
+                  <span class="fw-medium">{{ $message }}</span>
+                </span>
+              @enderror
             </div>
             <div class="mb-3 form-password-toggle">
               <div class="input-group input-group-merge">
