@@ -35,7 +35,7 @@ Materialize Laravel Jetstream is a lightweight laravel package that focuses on t
 You may use Composer to install Jetstream into your new Laravel project:
 
 ```
-composer require laravel/jetstream
+composer require laravel/jetstream:3.2.4
 ```
 
 If you choose to install Jetstream through Composer, you should run the jetstream:install Artisan command. This command accepts the name of the stack you prefer (livewire). You are highly encouraged to read through the entire documentation of Livewire before beginning your Jetstream project. In addition, you may use the __--teams__ switch to enable team support:
@@ -59,10 +59,7 @@ php artisan jetstream:install livewire --teams
 Use Composer to install Materialize Jetstream into your new Laravel project as dev dependency:
 
 ```
-
 composer require pixinvent/materialize-laravel-bootstrap-jetstream --dev
- 
-
 ```
 
 Regardless how you install Jetstream, Materialize Laravel Bootstrap Jetstream commands are very similar to that
