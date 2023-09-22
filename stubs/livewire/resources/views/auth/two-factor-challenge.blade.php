@@ -60,7 +60,7 @@ $customizerHidden = 'customizer-hide';
             </div>
 
             <button type="button" class="btn btn-outline-secondary mb-2 w-100" x-show="! recovery" x-on:click="recovery = true; $nextTick(() => { $refs.recovery_code.focus()})">Use a recovery code</button>
-            <button type="button" class="btn btn-outline-secondary mb-2 w-100" x-show="recovery" x-on:click=" recovery = false; $nextTick(() => { $refs.code.focus() })">Use an authentication code</button>
+            <button type="button" class="btn btn-outline-secondary mb-2 w-100" x-cloak x-show="recovery" x-on:click=" recovery = false; $nextTick(() => { $refs.code.focus() })">Use an authentication code</button>
             <x-button class="w-100">Log in</x-button>
           </form>
         </div>
