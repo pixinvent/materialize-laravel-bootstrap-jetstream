@@ -52,13 +52,11 @@ $customizerHidden = 'customizer-hide';
               <x-input class="{{ $errors->has('code') ? 'is-invalid' : '' }}" type="text" inputmode="numeric" name="code" autofocus x-ref="code" autocomplete="one-time-code" />
               <x-input-error for="code"></x-input-error>
             </div>
-
             <div class="mb-3" x-show="recovery">
               <x-label class="form-label" value="{{ __('Recovery Code') }}" />
               <x-input class="{{ $errors->has('recovery_code') ? 'is-invalid' : '' }}" type="text" name="recovery_code" x-ref="recovery_code" autocomplete="one-time-code" />
               <x-input-error for="recovery_code"></x-input-error>
             </div>
-
             <div class="d-flex justify-content-end gap-2">
               <div x-show="! recovery" x-on:click="recovery = true; $nextTick(() => { $refs.recovery_code.focus()})">
                 <button type="button" class="btn btn-outline-secondary">Use a recovery code</button>
