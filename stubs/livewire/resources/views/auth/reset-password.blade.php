@@ -17,7 +17,7 @@ $customizerHidden = 'customizer-hide';
   <div class="authentication-wrapper authentication-cover">
     <!-- Logo -->
     <a href="{{url('/')}}" class="auth-cover-brand d-flex align-items-center gap-2">
-      <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'#666cff'])</span>
+      <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'var(--bs-primary)'])</span>
       <span class="app-brand-text demo text-heading fw-bold">{{config('variables.templateName')}}</span>
     </a>
     <!-- /Logo -->
@@ -33,25 +33,20 @@ $customizerHidden = 'customizer-hide';
       <!-- Reset Password -->
       <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg position-relative py-sm-5 px-4 py-4">
         <div class="w-px-400 mx-auto pt-5 pt-lg-0">
-          <h4 class="mb-2 fw-semibold">Reset Password 🔒</h4>
+          <h4 class="mb-2">Reset Password 🔒</h4>
           <p class="mb-4">Your new password must be different from previously used passwords</p>
           <form id="formAuthentication" class="mb-3" action="{{ route('password.update') }}" method="POST">
             @csrf
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-            <div class="mb-3 form-password-toggle">
-              <div class="input-group input-group-merge">
-                <div class="form-floating form-floating-outline">
-                  <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="john@example.com" value="{{Request()->email}}" readonly />
-                  <label for="password">Email</label>
-                </div>
-                <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
-                @error('email')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-              </div>
+            <div class="form-floating form-floating-outline mb-3">
+              <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="john@example.com" value="{{Request()->email}}" readonly />
+              <label for="email">Email</label>
+              @error('email')
+              <span class="invalid-feedback" role="alert">
+                <span class="fw-medium">{{ $message }}</span>
+              </span>
+              @enderror
             </div>
 
             <div class="mb-3 form-password-toggle">
@@ -63,6 +58,11 @@ $customizerHidden = 'customizer-hide';
                 </div>
                 <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
               </div>
+              @error('password')
+                <span class="invalid-feedback" role="alert">
+                  <span class="fw-medium">{{ $message }}</span>
+                </span>
+              @enderror
             </div>
             <div class="mb-3 form-password-toggle">
               <div class="input-group input-group-merge">

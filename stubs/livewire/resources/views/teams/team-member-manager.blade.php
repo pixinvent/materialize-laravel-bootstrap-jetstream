@@ -24,7 +24,7 @@
         <div class="mb-3">
           <x-label class="form-label" for="email" value="{{ __('Email') }}" />
           <x-input id="name" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}"
-            wire:model.defer="addTeamMemberForm.email" />
+            wire:model="addTeamMemberForm.email" />
           <x-input-error for="email" />
         </div>
 
@@ -32,7 +32,7 @@
         @if (count($this->roles) > 0)
           <div class="my-3">
             <div class="mb-3">
-              <x-label class="fw-bolder" for="role" value="{{ __('Role') }}" />
+              <x-label class="fw-medium" for="role" value="{{ __('Role') }}" />
 
               <input type="hidden" class="{{ $errors->has('role') ? 'is-invalid' : '' }}">
               <x-input-error for="role" />
@@ -43,7 +43,7 @@
                 <a href="#" class="list-group-item list-group-item-action"
                   wire:click.prevent="$set('addTeamMemberForm.role', '{{ $role->key }}')">
                   <div>
-                    <span class="{{ $addTeamMemberForm['role'] == $role->key ? 'fw-bold' : '' }}">
+                    <span class="{{ $addTeamMemberForm['role'] == $role->key ? 'fw-medium' : '' }}">
                       {{ $role->name }}
                     </span>
                     @if ($addTeamMemberForm['role'] == $role->key)
@@ -126,9 +126,9 @@
           <div class="d-flex justify-content-between mt-2 mb-2">
             <div class="d-flex align-items-center">
               <div class="pe-2">
-                <img width="32" class="rounded-circle" src="{{ $user->profile_photo_url }}">
+                <img width="32" class="rounded-circle" src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}">
               </div>
-              <span class="fw-bolder">{{ $user->name }}</span>
+              <span class="fw-medium">{{ $user->name }}</span>
             </div>
 
             <div class="d-flex">
@@ -166,7 +166,7 @@
   @endif
 
   <!-- Role Management Modal -->
-  <x-dialog-modal wire:model="currentlyManagingRole">
+  <x-dialog-modal wire:model.live="currentlyManagingRole">
     <x-slot name="title">
       {{ __('Manage Role') }}
     </x-slot>
@@ -177,7 +177,7 @@
           <a href="#" class="list-group-item list-group-item-action"
             wire:click.prevent="$set('currentRole', '{{ $role->key }}')">
             <div>
-              <span class="{{ $currentRole == $role->key ? 'fw-bold' : '' }}">
+              <span class="{{ $currentRole == $role->key ? 'fw-medium' : '' }}">
                 {{ $role->name }}
               </span>
               @if ($currentRole == $role->key)
@@ -209,7 +209,7 @@
   </x-dialog-modal>
 
   <!-- Leave Team Confirmation Modal -->
-  <x-confirmation-modal wire:model="confirmingLeavingTeam">
+  <x-confirmation-modal wire:model.live="confirmingLeavingTeam">
     <x-slot name="title">
       {{ __('Leave Team') }}
     </x-slot>
@@ -230,7 +230,7 @@
   </x-confirmation-modal>
 
   <!-- Remove Team Member Confirmation Modal -->
-  <x-confirmation-modal wire:model="confirmingTeamMemberRemoval">
+  <x-confirmation-modal wire:model.live="confirmingTeamMemberRemoval">
     <x-slot name="title">
       {{ __('Remove Team Member') }}
     </x-slot>

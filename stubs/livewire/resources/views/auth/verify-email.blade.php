@@ -16,7 +16,7 @@ $customizerHidden = 'customizer-hide';
 <div class="authentication-wrapper authentication-cover">
   <!-- Logo -->
   <a href="{{url('/')}}" class="auth-cover-brand d-flex align-items-center gap-2">
-    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'#666cff'])</span>
+    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'var(--bs-primary)'])</span>
     <span class="app-brand-text demo text-heading fw-bold">{{config('variables.templateName')}}</span>
   </a>
   <!-- /Logo -->
@@ -42,22 +42,17 @@ $customizerHidden = 'customizer-hide';
         </div>
         @endif
         <p class="text-start">
-          Account activation link sent to your email address: <strong>{{Auth::user()->email}}</strong> Please follow the link inside to continue.
+          Account activation link sent to your email address: <span class="fw-medium">{{Auth::user()->email}}</span> Please follow the link inside to continue.
         </p>
-        <div class="mt-4 d-flex flex-column justify-content-between gap-2">
+        <div class="mt-4 d-flex flex-column gap-2">
           <form method="POST" action="{{ route('verification.send') }}">
             @csrf
-            <button type="submit" class="w-100 btn btn-label-secondary">
-              click here to request another
-            </button>
+            <button type="submit" class="w-100 btn btn-label-secondary">click here to request another</button>
           </form>
 
           <form method="POST" action="{{route('logout')}}">
             @csrf
-
-            <button type="submit" class="w-100 btn btn-danger">
-              Log Out
-            </button>
+            <button type="submit" class="w-100 btn btn-danger">Log Out</button>
           </form>
         </div>
       </div>

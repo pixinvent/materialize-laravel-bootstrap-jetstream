@@ -16,7 +16,7 @@ $customizerHidden = 'customizer-hide';
 <div class="authentication-wrapper authentication-cover">
   <!-- Logo -->
   <a href="{{url('/')}}" class="auth-cover-brand d-flex align-items-center gap-2">
-    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'#666cff'])</span>
+    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'var(--bs-primary)'])</span>
     <span class="app-brand-text demo text-heading fw-bold">{{config('variables.templateName')}}</span>
   </a>
   <!-- /Logo -->
@@ -31,7 +31,7 @@ $customizerHidden = 'customizer-hide';
     <!-- Login -->
     <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg position-relative py-sm-5 px-4 py-4">
       <div class="w-px-400 mx-auto pt-5 pt-lg-0">
-        <h4 class="mb-2 fw-semibold">Welcome to {{config('variables.templateName')}}! 👋</h4>
+        <h4 class="mb-2">Welcome to {{config('variables.templateName')}}! 👋</h4>
         <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
         @if (session('status'))
@@ -49,29 +49,32 @@ $customizerHidden = 'customizer-hide';
             <label for="login-email">Email</label>
             @error('email')
             <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
+              <span class="fw-medium">{{ $message }}</span>
             </span>
             @enderror
           </div>
           <div class="mb-3">
             <div class="form-password-toggle">
-              <div class="input-group input-group-merge">
+              <div class="input-group input-group-merge @error('password') is-invalid @enderror">
                 <div class="form-floating form-floating-outline">
-                  <input type="password" id="login-password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
+                  <input type="password" id="login-password"
+                    class="form-control @error('password') is-invalid @enderror" name="password"
+                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                    aria-describedby="password" />
                   <label for="login-password">Password</label>
                 </div>
                 <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
-                @error('password')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-                @enderror
               </div>
+              @error('password')
+              <span class="invalid-feedback" role="alert">
+                <span class="fw-medium">{{ $message }}</span>
+              </span>
+              @enderror
             </div>
           </div>
           <div class="mb-3 d-flex justify-content-between">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="remember-me" name="remember" {{ old('remember') ? 'checked' : '' }}>
+              <input class="form-check-input" type="checkbox" id="remember-me">
               <label class="form-check-label" for="remember-me">
                 Remember Me
               </label>
