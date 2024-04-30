@@ -34,7 +34,7 @@ const LibsScssFiles = GetFilesArray('resources/assets/vendor/libs/**/!(_)*.scss'
 const LibsCssFiles = GetFilesArray('resources/assets/vendor/libs/**/*.css');
 
 // Processing Fonts Scss Files
-const FontsScssFiles = GetFilesArray('resources/assets/vendor/fonts/!(_)*.scss');
+const FontsScssFiles = GetFilesArray('resources/assets/vendor/fonts/**/!(_)*.scss');
 
 // Processing Window Assignment for Libs like jKanban, pdfMake
 function libsWindowAssignment() {
