@@ -9,80 +9,85 @@ $customizerHidden = 'customizer-hide';
 @section('title', 'Register Pages')
 
 @section('page-style')
-{{-- Page Css files --}}
-@vite('resources/assets/vendor/scss/pages/page-auth.scss')
+@vite(['resources/assets/vendor/scss/pages/page-auth.scss'])
 @endsection
 
 @section('content')
 <div class="authentication-wrapper authentication-cover">
   <!-- Logo -->
-  <a href="{{url('/')}}" class="auth-cover-brand d-flex align-items-center gap-2">
-    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'var(--bs-primary)'])</span>
-    <span class="app-brand-text demo text-heading fw-semibold">{{config('variables.templateName')}}</span>
+  <a href="{{ url('/') }}" class="app-brand auth-cover-brand gap-2">
+    <span class="app-brand-logo demo">@include('_partials.macros')</span>
+    <span class="app-brand-text demo text-heading fw-bold">{{ config('variables.templateName') }}</span>
   </a>
   <!-- /Logo -->
   <div class="authentication-inner row m-0">
-
     <!-- /Left Text -->
-    <div class="d-none d-lg-flex col-lg-7 col-xl-8 align-items-center justify-content-center p-12 pb-2">
-      <img src="{{asset('assets/img/illustrations/auth-register-illustration-'.$configData['style'].'.png') }}" class="auth-cover-illustration w-100" alt="auth-illustration" data-app-light-img="illustrations/auth-register-illustration-light.png" data-app-dark-img="illustrations/auth-register-illustration-dark.png" />
-      <img src="{{asset('assets/img/illustrations/auth-cover-register-mask-'.$configData['style'].'.png') }}" class="authentication-image" alt="mask" data-app-light-img="illustrations/auth-cover-register-mask-light.png" data-app-dark-img="illustrations/auth-cover-register-mask-dark.png" />
+    <div class="d-none d-lg-flex col-lg-7 col-xl-8 align-items-center p-5">
+      <div class="w-100 d-flex justify-content-center">
+        <img src="{{ asset('assets/img/illustrations/girl-with-laptop-' . $configData['theme'] . '.png') }}"
+          class="img-fluid scaleX-n1-rtl" alt="Login image" width="700"
+          data-app-dark-img="illustrations/girl-with-laptop-dark.png"
+          data-app-light-img="illustrations/girl-with-laptop-light.png">
+      </div>
     </div>
     <!-- /Left Text -->
 
     <!-- Register -->
-    <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg position-relative py-sm-12 px-12 py-6">
-      <div class="w-px-400 mx-auto pt-5 pt-lg-0">
+    <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-12 p-6">
+      <div class="w-px-400 mx-auto mt-sm-12 mt-8 pt-5">
         <h4 class="mb-1">Adventure starts here 🚀</h4>
-        <p class="mb-5">Make your app management easy and fun!</p>
+        <p class="mb-6">Make your app management easy and fun!</p>
 
-        <form id="formAuthentication" class="mb-5" action="{{ route('register') }}" method="POST">
+        <form id="formAuthentication" class="mb-6" action="{{ route('register') }}" method="POST">
           @csrf
-          <div class="form-floating form-floating-outline mb-5">
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="username" name="name" placeholder="johndoe" autofocus value="{{ old('name') }}">
-            <label for="username">Username</label>
+          <div class="mb-6">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="username" name="name"
+              placeholder="johndoe" autofocus value="{{ old('name') }}" />
             @error('name')
-              <span class="invalid-feedback" role="alert">
-                <span class="fw-medium">{{ $message }}</span>
-              </span>
+            <span class="invalid-feedback" role="alert">
+              <span class="fw-medium">{{ $message }}</span>
+            </span>
             @enderror
           </div>
-          <div class="form-floating form-floating-outline mb-5">
-            <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="john@example.com" value="{{ old('email') }}">
-            <label for="email">Email</label>
+          <div class="mb-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
+              placeholder="john@example.com" value="{{ old('email') }}" />
             @error('email')
-              <span class="invalid-feedback" role="alert">
-                <span class="fw-medium">{{ $message }}</span>
-              </span>
+            <span class="invalid-feedback" role="alert">
+              <span class="fw-medium">{{ $message }}</span>
+            </span>
             @enderror
           </div>
-            <div class="mb-5 form-password-toggle">
+          <div class="mb-6 form-password-toggle">
+            <label class="form-label" for="password">Password</label>
             <div class="input-group input-group-merge @error('password') is-invalid @enderror">
-              <div class="form-floating form-floating-outline">
-                <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
-                <label for="password">Password</label>
-              </div>
-              <span class="input-group-text cursor-pointer"><i class="ri-eye-off-line"></i></span>
+              <input type="password" id="password" class="form-control @error('password') is-invalid @enderror"
+                name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                aria-describedby="password" />
+              <span class="input-group-text cursor-pointer"><i class="icon-base bx bx-hide"></i></span>
             </div>
             @error('password')
-              <span class="invalid-feedback" role="alert">
-                <span class="fw-medium">{{ $message }}</span>
-              </span>
+            <span class="invalid-feedback" role="alert">
+              <span class="fw-medium">{{ $message }}</span>
+            </span>
             @enderror
           </div>
-          <div class="mb-5 form-password-toggle">
+          <div class="mb-6 form-password-toggle">
+            <label class="form-label" for="password-confirm">Confirm Password</label>
             <div class="input-group input-group-merge">
-              <div class="form-floating form-floating-outline">
-                <input type="password" id="password-confirm" class="form-control" name="password_confirmation" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
-                <label for="password-confirm">Confirm Password</label>
-              </div>
-              <span class="input-group-text cursor-pointer"><i class="ri-eye-off-line"></i></span>
+              <input type="password" id="password-confirm" class="form-control" name="password_confirmation"
+                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                aria-describedby="password" />
+              <span class="input-group-text cursor-pointer"><i class="icon-base bx bx-hide"></i></span>
             </div>
           </div>
           @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-          <div class="mb-5">
-            <div class="form-check mt-2 @error('terms') is-invalid @enderror">
-                <input class="form-check-input @error('terms') is-invalid @enderror" type="checkbox" id="terms" name="terms" />
+          <div class="my-8">
+            <div class="form-check mb-0 ms-2 @error('terms') is-invalid @enderror">
+              <input class="form-check-input @error('terms') is-invalid @enderror" type="checkbox" id="terms"
+                name="terms" />
               <label class="form-check-label" for="terms">
                 I agree to
                 <a href="{{ route('policy.show') }}" target="_blank">privacy policy</a> &
@@ -90,9 +95,9 @@ $customizerHidden = 'customizer-hide';
               </label>
             </div>
             @error('terms')
-              <div class="invalid-feedback" role="alert">
-                <span class="fw-medium">{{ $message }}</span>
-              </div>
+            <div class="invalid-feedback" role="alert">
+              <span class="fw-medium">{{ $message }}</span>
+            </div>
             @enderror
           </div>
           @endif
@@ -102,31 +107,31 @@ $customizerHidden = 'customizer-hide';
         <p class="text-center">
           <span>Already have an account?</span>
           @if (Route::has('login'))
-            <a href="{{ route('login') }}">
-              <span>Sign in instead</span>
-            </a>
+          <a href="{{ route('login') }}">
+            <span>Sign in instead</span>
+          </a>
           @endif
         </p>
 
-        <div class="divider my-5">
+        <div class="divider my-6">
           <div class="divider-text">or</div>
         </div>
 
-        <div class="d-flex justify-content-center gap-2">
-          <a href="javascript:;" class="btn btn-icon rounded-circle btn-text-facebook">
-            <i class="tf-icons ri-facebook-fill"></i>
+        <div class="d-flex justify-content-center">
+          <a href="javascript:;" class="btn btn-icon rounded-circle btn-text-facebook me-1_5">
+            <i class="icon-base bx bxl-facebook-circle"></i>
           </a>
 
-          <a href="javascript:;" class="btn btn-icon rounded-circle btn-text-twitter">
-            <i class="tf-icons ri-twitter-fill"></i>
+          <a href="javascript:;" class="btn btn-icon rounded-circle btn-text-twitter me-1_5">
+            <i class="icon-base bx bxl-twitter"></i>
           </a>
 
-          <a href="javascript:;" class="btn btn-icon rounded-circle btn-text-github">
-            <i class="tf-icons ri-github-fill"></i>
+          <a href="javascript:;" class="btn btn-icon rounded-circle btn-text-github me-1_5">
+            <i class="icon-base bx bxl-github"></i>
           </a>
 
           <a href="javascript:;" class="btn btn-icon rounded-circle btn-text-google-plus">
-            <i class="tf-icons ri-google-fill"></i>
+            <i class="icon-base bx bxl-google"></i>
           </a>
         </div>
       </div>
